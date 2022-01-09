@@ -21,7 +21,6 @@ In the .cson file, first type "'.source.cpp':", (use .c if you want exclusively 
  This is will make the editor insert:
  
 while (){
-
 }
 
 With your cursor after the final brace
@@ -30,7 +29,6 @@ If you had put "'body': 'while ($1){\n}'".
  This is will make the editor insert:
  
 while (){
-
 }
 
 With your cursor between the () of the while
