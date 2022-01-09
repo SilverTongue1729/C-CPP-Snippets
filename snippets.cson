@@ -1,4 +1,6 @@
 # I shall keep adding more snippets as I keep getting ideas
+# Other than these, I highly recommend checking out Atom's default snippets from the language-c package
+# Or https://github.com/textmate/c.tmbundle
 '.source.cpp':
   'for_loop':
     'prefix': 'f_'
