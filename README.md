@@ -62,6 +62,10 @@ For example, there is snippet for struct which whose prefix is 'st'
  So if you want to modify this, you need to use 'st' as your prefix 
 to overwrite the previous snippet.
 
+I shall keep adding more snippets as I keep getting ideas.
+ Other than these, I highly recommend checking out Atom's default snippets from the language-c package,
+ or https://github.com/textmate/c.tmbundle
+
 Hope you find my snippets useful! Modify your snippets as per your need, and feel free to send suggestions.
 
 PS: This will probably work for a different language as well :)
