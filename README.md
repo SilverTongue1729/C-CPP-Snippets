@@ -13,27 +13,29 @@ Other Editors and IDEs will have something similar.
 To add your own snippets or modify existing snippets do this
 
 To add a snippet:
-In the .cson file, first type "'.source.cpp':", (use .c if you want exclusively for c).
- Then type the name/heading you want for your snippet "'while loop':".
+In the .cson file, first type '.source.cpp': , (use .c if you want exclusively for c).
+ Then type the name/heading you want for your snippet 'while loop':
  Now in the next line type the 'prefix' (the key word seeing which the editor will suggest an autocomplete)
- type "'prefix': 'while'".
- Now type the 'body' (what you want the editor to write), for example "'body': 'while (){\n}'".
+ type 'prefix': 'while'
+ Now type the 'body' (what you want the editor to write), for example 'body': 'while (){\n}'
  This is will make the editor insert:
  
 while (){
+
 }
 
-With your cursor after the final brace
+With your cursor after the final brace (there isn't an empty line between the braces)
 
-If you had put "'body': 'while ($1){\n}'".
+If you had put 'body': 'while ($1){\n}'
  This is will make the editor insert:
  
 while (){
+
 }
 
 With your cursor between the () of the while
 
-Instead, if you had put ''body': 'while (${1:i}==42){\n}'" the editor will insert:
+Instead, if you had put 'body': 'while (${1:i}==42){\n}' the editor will insert:
 
 while (i==42){
 
