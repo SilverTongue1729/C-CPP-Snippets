@@ -1,5 +1,5 @@
 # C-CPP-Snippets
-C/C++ Snippets for faster coding, with explanation to apply in Atom
+C/C++ Snippets for Competitive Programming and faster coding in general, with explanation to apply in Atom
 
 Snippets are basically autocomplete features offered by editors.
 Some are present by default. You can modify existing snippets or add your own.
