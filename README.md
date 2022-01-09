@@ -62,6 +62,6 @@ For example, there is snippet for struct which whose prefix is 'st'
  So if you want to modify this, you need to use 'st' as your prefix 
 to overwrite the previous snippet.
 
-Hope you find my snippets useful! You're free to send suggestions or add more to your own code.
+Hope you find my snippets useful! Feel free to send suggestions.
 
 PS: This will probably work for a different language as well :)
