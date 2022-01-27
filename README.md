@@ -68,6 +68,4 @@ I shall keep adding more snippets as I keep getting ideas.
  You could also check out Atom's default snippets from the language-c package,
  or https://github.com/textmate/c.tmbundle
 
-Hope you find my snippets useful! Modify your snippets as per your need, and feel free to send suggestions.
-
-PS: This will probably work for a different language as well :)
+Hope you find my snippets useful!
