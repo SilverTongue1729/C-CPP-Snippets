@@ -1,19 +1,15 @@
-# I shall keep adding more snippets as I keep getting ideas
-# Other than these, I recommend checking out Atom's default snippets from the language-c package
-# Or https://github.com/textmate/c.tmbundle
-
 '.source.cpp':
   'for_loop':
     'prefix': 'f_'
-    'body': 'for_(${1:i},0,n){\n}'
+    'body': 'for_(${1:i},${2:0},${3:n}){\n\t$0\n}'
 
   'for loop':
     'prefix': 'for'
-    'body': 'for (${1:i=0;i<n;i++}){\n}'
+    'body': 'for (${1:i}=${2:0};${1:i}<${3:n};${1:i}++){\n\t$0\n}'
 
   'while':
-    'prefix': 'w'
-    'body': 'while ($1){\n}'
+    'prefix': 'while'
+    'body': 'while ($1){\n\t$0\n}'
 
   'do while':
     'prefix': 'do'
@@ -25,7 +21,7 @@
 
   'cout':
     'prefix': 'cout'
-    'body': 'cout << $1 << \'\';'
+    'body': 'cout << $1 ${2:<< ${3:\'$0${4:\\\\n}\'}};'
 
   '#define':
     'prefix': 'def'
@@ -33,11 +29,11 @@
 
   '#include <>':
     'prefix': 'Inc'
-    'body': '#include <${1:bits/stdc++.h}>'
+    'body': '#include <${2:${1:bits/stdc++}.h}>'
 
   'if':
     'prefix': 'if'
-    'body': 'if ($1){\n}'
+    'body': 'if ($1){\n\t$0\n}'
 
   'else':
     'prefix': 'el'
@@ -45,27 +41,27 @@
 
   'if else':
     'prefix': 'ife'
-    'body': 'if ($1){\n}\nelse{\n\t\n}'
+    'body': 'if ($1){\n\t$0\n}\nelse{\n\t\n}'
 
   'if elseif':
     'prefix': 'iff'
-    'body': 'if ($1){\n}\nelse if(){\n\t\n}'
+    'body': 'if ($1){\n\t$0\n}\nelse if(){\n\t\n}'
 
   'if elseif else':
     'prefix': 'iffe'
-    'body': 'if ($1){\n}\nelse if(){\n\t\n}\nelse{\n\t\n}'
+    'body': 'if ($1){\n\t$0\n}\nelse if(){\n\t\n}\nelse{\n\t\n}'
 
   'else if ':
     'prefix': 'elif'
-    'body': 'else if ($1){\n}'
+    'body': 'else if ($1){\n\t$0\n}'
 
   'switch':
     'prefix': 'switch'
-    'body': 'switch ($1) {\n\tcase :\n\t\tbreak;\n}'
+    'body': 'switch ($1) {\n\tcase :\n\t$0\tbreak;\n}'
 
   'case':
     'prefix': 'case'
-    'body': 'case $1: \n\tbreak;'
+    'body': 'case $1: \n\t$0\n\tbreak;'
 
   'return':
     'prefix': 'return'
@@ -77,11 +73,23 @@
 
   'printf':
     'prefix': 'printf'
-    'body': 'printf("${1:%d}", );'
+    'body': 'printf("%${1:d}\\\\n", $2);'
 
   'scanf':
     'prefix': 'scanf'
-    'body': 'scanf("%d$1", &);'
+    'body': 'scanf("%${1:d}", &$2);'
+
+  'fprintf':
+    'prefix': 'fprintf'
+    'body': 'fprintf($1,"%${2:d}\\\\n",$3);'
+
+  'fopen':
+    'prefix': 'fopen'
+    'body': 'fopen("$1.txt", "${2:w}");\n$0\n\nfclose();'
+
+  'fclose':
+    'prefix': 'fclose'
+    'body': 'fclose($1);'
 
   'int':
     'prefix': 'int'
@@ -93,7 +101,23 @@
 
   'vector':
     'prefix': 'vector'
-    'body': 'vector<${1:int}> (LIM1,0);'
+    'body': 'vector<${1:int}> ${2:v}${3:(${4:LIM1},${5:0})};'
+
+  'set':
+    'prefix': 'set'
+    'body': 'set<${1:int}> $2;'
+
+  'multiset':
+    'prefix': 'multiset'
+    'body': 'multiset<${1:int}> $2;'
+
+  'insert':
+    'prefix': 'insert'
+    'body': 'insert($1);'
+
+  'erase':
+    'prefix': 'erase'
+    'body': 'erase($1);'
 
   'string':
     'prefix': 'str'
@@ -101,15 +125,15 @@
 
   'struct':
     'prefix': 'st'
-    'body': 'struct $1{\n};'
+    'body': 'struct $1{\n\t$0\n};'
 
   'void':
     'prefix': 'void'
-    'body': 'void $1(){\n}'
+    'body': 'void $1(){\n\t$0\n}'
 
   'typedef':
     'prefix': 'td'
-    'body': 'typedef ${1:int};'
+    'body': 'typedef ${1:int} $2;'
 
   'using namespace':
     'prefix': 'using'
@@ -121,7 +145,7 @@
 
   'template <typename>':
     'prefix': 'tp'
-    'body': 'template <typename $1>'
+    'body': 'template <${1:typename} $2>'
 
 ################################################################################
 
@@ -129,14 +153,16 @@
     'prefix': 'Basic Template'
     'body': '''
 #include <bits/stdc++.h>
-
 using namespace std;
 
 #define for_(i,s,e) for ( i=s; ((i<e)&&(s<e))||((i>e)&&(s>=e)); (s<e)?i++:i--)
 #define all(x) x.begin(),x.end()
-#define endl '\n'
+#define endl '\\\\n'
+#define PB push_back
+#define MP make_pair
+#define F first
+#define S second
 #define MOD1 1000000007
-#define MOD2 998244353
 #define LIM1 300005
 typedef long long ll;
 typedef vector<int> vi;
@@ -147,12 +173,24 @@ typedef pair<int,int> pi;
 int i,j,t,n,c,ans;
 
 int main(){
-  ios_base::sync_with_stdio(false); cin.tie(0);
+  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
-  cin >> n;
+  cin >> ${1:n};
 
   return 0;
 }
+'''
+
+  'GNU PBDS':
+    'prefix': 'gnu pbds'
+    'body': '''
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+
+#define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+// *( .find_by_order(i)) returns iterator to ith element, so use *
+// order_of_key(k) returns number of items strictly < k
 '''
 
   'fastscan':
@@ -242,12 +280,3 @@ void fastprint(int num){
 '''
 
 ################################################################################
-
-
-
-
-
-  # 'put semicolon':
-  #   'prefix': 'e'
-  #   'body': '= $1;'
-
