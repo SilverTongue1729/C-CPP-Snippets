@@ -1,11 +1,11 @@
 '.source.cpp':
   'for_loop':
     'prefix': 'f_'
-    'body': 'for_(${1:i},${2:0},${3:n}){\n\t$0\n}'
+    'body': 'for_(${1:i},${2:0},${3:n}){\n}'
 
   'for loop':
     'prefix': 'for'
-    'body': 'for (${1:i}=${2:0};${1:i}<${3:n};${1:i}++){\n\t$0\n}'
+    'body': 'for (${1:i}=${2:0};${1:i}<${3:n};${1:i}++){\n}'
 
   'while':
     'prefix': 'while'
@@ -31,9 +31,13 @@
     'prefix': 'Inc'
     'body': '#include <${2:${1:bits/stdc++}.h}>'
 
+  '#ifdef DEBUG':
+    'prefix': 'Debug'
+    'body': '#ifdef DEBUG\n\t$1\n#endif'
+
   'if':
     'prefix': 'if'
-    'body': 'if ($1){\n\t$0\n}'
+    'body': 'if ($1){\n}'
 
   'else':
     'prefix': 'el'
@@ -41,19 +45,19 @@
 
   'if else':
     'prefix': 'ife'
-    'body': 'if ($1){\n\t$0\n}\nelse{\n\t\n}'
+    'body': 'if ($1){\n\nelse{\n\t\n}'
 
   'if elseif':
     'prefix': 'iff'
-    'body': 'if ($1){\n\t$0\n}\nelse if(){\n\t\n}'
+    'body': 'if ($1){\n}\nelse if(){\n\t\n}'
 
   'if elseif else':
     'prefix': 'iffe'
-    'body': 'if ($1){\n\t$0\n}\nelse if(){\n\t\n}\nelse{\n\t\n}'
+    'body': 'if ($1){\n}\nelse if(){\n\t\n}\nelse{\n\t\n}'
 
   'else if ':
     'prefix': 'elif'
-    'body': 'else if ($1){\n\t$0\n}'
+    'body': 'else if ($1){\n}'
 
   'switch':
     'prefix': 'switch'
@@ -62,6 +66,14 @@
   'case':
     'prefix': 'case'
     'body': 'case $1: \n\t$0\n\tbreak;'
+
+  'if print':
+    'prefix': 'ifprint'
+    'body': 'if ($1) printf("$1");'
+
+  'continue':
+    'prefix': 'continue'
+    'body': 'continue;'
 
   'return':
     'prefix': 'return'
@@ -83,6 +95,10 @@
     'prefix': 'fprintf'
     'body': 'fprintf($1,"%${2:d}\\\\n",$3);'
 
+  'fscanf':
+    'prefix': 'fscanf'
+    'body': 'fscanf($1,"%${2:d}\\\\n",$3);'
+
   'fopen':
     'prefix': 'fopen'
     'body': 'fopen("$1.txt", "${2:w}");\n$0\n\nfclose();'
@@ -98,6 +114,10 @@
   'long long':
     'prefix': 'll'
     'body': 'll $1;'
+
+  'Sieof':
+    'prefix': 'sizeof'
+    'body': 'sizeof($1)'
 
   'vector':
     'prefix': 'vector'
@@ -118,10 +138,6 @@
   'erase':
     'prefix': 'erase'
     'body': 'erase($1);'
-
-  'string':
-    'prefix': 'str'
-    'body': 'string $1;'
 
   'struct':
     'prefix': 'st'
@@ -154,28 +170,35 @@
     'body': '''
 #include <bits/stdc++.h>
 using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define ordered_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update>
 
 #define for_(i,s,e) for ( i=s; ((i<e)&&(s<e))||((i>e)&&(s>=e)); (s<e)?i++:i--)
 #define all(x) x.begin(),x.end()
 #define endl '\\\\n'
-#define PB push_back
-#define MP make_pair
-#define F first
-#define S second
-#define MOD1 1000000007
+#define pb push_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define sz(a) (int)(a.size())
 #define LIM1 300005
+// #define DEBUG
 typedef long long ll;
 typedef vector<int> vi;
-typedef vector<vi> vvi;
-typedef vector<ll> vl;
-typedef pair<int,int> pi;
+typedef array<int, 2> ii;
 
 int i,j,t,n,c,ans;
 
 int main(){
   ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+  #ifdef LOCAL
+    freopen("/home/sriteja/Programming/Random/input_01.txt","r",stdin);
+  #endif
 
   cin >> ${1:n};
+
 
   return 0;
 }
@@ -189,8 +212,12 @@ int main(){
 using namespace __gnu_pbds;
 
 #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+#define indexed_multiset tree<int, null_type, less_equal<int>, rb_tree_tag,tree_order_statistics_node_update>
+
 // *( .find_by_order(i)) returns iterator to ith element, so use *
 // order_of_key(k) returns number of items strictly < k
+// ordered_set oset;
+// indexed_multiset mset;
 '''
 
   'fastscan':
@@ -278,5 +305,18 @@ void fastprint(int num){
       putchar(snum[i--]);
 }
 '''
+  'divide with mod':
+    'prefix': 'divide'
+    'body': '''
+ ll divide(ll mod, ll dividend, ll divisor){
+   if (dividend%divisor==0) return 0;
+   return (((-1*dividend)%divisor+divisor)%divisor + divisor*divide(divisor,((-1*dividend)%divisor+divisor)%divisor,mod%divisor))/(mod%divisor);
+ }
+
+ ll divide2(ll mod, ll dividend, ll divisor){
+   return (dividend+mod*divide(mod,dividend,divisor))/divisor;
+ }
+'''
+
 
 ################################################################################
